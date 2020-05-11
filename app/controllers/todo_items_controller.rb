@@ -1,5 +1,6 @@
 class TodoItemsController < ApplicationController
     before_action :set_todo_list
+    before_action :set_todo_item, except: [:create]
     #before action does that thing before doing anything else
     #same for after action
     
@@ -8,16 +9,35 @@ class TodoItemsController < ApplicationController
         redirect_to @todo_list
     end
     #above id equivalent to function create(){} of js
-    private
-
-    def set_todo_list
-        @todo_list = ToDoList.find(params[:todo_list_id])
-        #this will take the id from the URL given via get request
-        #and set it in the todo_list variable in the beginning only
+    
+    def destroy
+        @todo_item = @todo_list.todo_items.find(params[:id])
+        if @todo_item.destroy
+            flash[:success] = "Todo List item was deleted."
+        else
+            flash[:error] = "Todo List item could not be deleted."
+        end
+        redirect_to @todo_list 
     end
 
+    def complete
+        @todo_item.update_attribute(:completed_at, Time.now)
+        redirect_to @todo_list, notice: "Todo item completed"
+    end
+
+    private
+
+    def set_todo_item
+        @todo_item = @todo_list.todo_items.find(params[:id])
+    end
+
+    def set_todo_list
+        @todo_list = TodoList.find(params[:todo_list_id])
+    end
+
+
     def todo_item_params
-        params[:todo_items].permit(:content)
+        params[:todo_item].permit(:content)
         #: is for key
         #permit will allow those attributes for updation
     end
