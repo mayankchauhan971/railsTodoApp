@@ -1,23 +1,32 @@
-<div class="row clearfix">
+<table class="row clearfix" style = "width: 100%">
 	<% if todo_item.completed? %>
-	<div class="complete">
-		<%= link_to "Mark as Complete", complete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch %>
-	</div>
-	<div class="todo_item">
-		<p style="opacity: 0.4;"><strike><%= todo_item.content %></strike></p>
-	</div>
-	<div class="trash">
-		<%= link_to "Delete", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: { confirm: "Are you sure?" } %>
-	</div>
+		
+		<tr class="todo_item">
+			<td style="opacity: 0.4; width: 30%" ><strike><%= todo_item.content %></strike></td>
+			<td style="opacity: 0.4; width: 30%"><strike><%= todo_item.priority %></strike></td>
+			<td style="opacity: 0.4; width: 30%"><strike><%= todo_item.duedate %></strike></td>
+		</tr>
+		<tr>
+			<td class="trash" style = "width: 50%">
+				<%= link_to "Delete", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: { confirm: "Are you sure?" } %>
+			</td>
+			<td class="complete" style = "width: 50%">
+				<%= link_to "Mark as Complete", complete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch %>
+			</td>
+		</tr>
 	<% else %>
-	<div class="complete">
-		<%= link_to "Mark as Complete", complete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch %>
-	</div>
-	<div class="todo_item">
-		<p><%= todo_item.content %></p>
-	</div>
-	<div class="trash">
-		<%= link_to "Delete", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: { confirm: "Are you sure?" } %>
-	</div>
+		<tr class="todo_item">
+			<td style = "width: 30%" > <%= todo_item.content %></td>
+			<td style = "width: 30%" > <%= todo_item.priority %></td>
+			<td style = "width: 30%" > <%= todo_item.duedate %></td>
+		</tr>
+		<tr>
+			<td class="trash" style = "width: 50%">
+				<%= link_to "Delete", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: { confirm: "Are you sure?" } %>
+			</td>
+			<td class="complete" style = "width: 50%">
+				<%= link_to "Mark as Complete", complete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch %>
+			</td>
+		</tr>
 	<% end %>
-</div>
+</table>

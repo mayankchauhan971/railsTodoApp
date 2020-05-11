@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
 <p>
-  <strong>Title:</strong>
+  <strong>List Title:</strong>
   <%= @todo_list.title %>
 </p>
 <p>
   <strong>Description:</strong>
   <%= @todo_list.description %>
 </p>
+
 <div id="todo_items_wrapper">
  <%= render @todo_list.todo_items %>
  <div id="form">
