@@ -11,7 +11,7 @@
 				<%= link_to "Delete", todo_list_todo_item_path(@todo_list, todo_item.id), method: :delete, data: { confirm: "Are you sure?" } %>
 			</td>
 			<td class="complete action-buttons">
-				<%= link_to "Mark as Complete", complete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch %>
+				<%= link_to "Mark as Incomplete", incomplete_todo_list_todo_item_path(@todo_list, todo_item.id), method: :patch %>
 			</td>
 		</tr>
 	<% else %>

@@ -4,6 +4,9 @@ resources :todo_lists do
     member do
      patch :complete
     end
+    member do
+      patch :incomplete
+    end
   end
 end
 root "todo_lists#index"
